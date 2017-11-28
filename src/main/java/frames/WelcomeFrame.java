@@ -24,8 +24,8 @@ public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
     private JLabel label_select_state, label_select_color;//选择方式，选择按钮
     private JLabel BackLabel, label_message;//背景标签
     private ImageIcon icon = new ImageIcon("drawable/welcome.png");
-//    private int select_state =  BoradFrame ;//启动方式，默认为服务器方式
-//    private int select_color = BoradFrame;//棋子颜色，默认黑色
+    private int select_state =  BoradFrame.STATE_SERVICE ;//启动方式，默认为服务器方式
+    private int select_color = BoradFrame.STATE_BLACK;//棋子颜色，默认黑色
     int mx = 0, my = 0, jfx = 0, jfy = 0;
     private BlankPanel blankPanel;//透明面板
     private int Frame_width = 1000;
@@ -94,11 +94,28 @@ public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
 
         //JPanel
         blankPanel = new BlankPanel(180);
+        if (select_state == 1){
+            selectService.setState("selectied");
+            selectClient.setState("normal");
+        }else {
+            selectService.setState("normal");
+            selectClient.setState("selectied");
+        }
 
+        if (select_color == 1){
+            selectBlack.setState("selectied");
+            selcetWhite.setState("normal");
+        }else {
+            selectBlack.setState("normal");
+            selcetWhite.setState("selectied");
+        }
 
     }
 
     public void setViews() {
+        label_select_state.setBounds(169,187,100,35);
+        label_select_color.setBounds(169,240,100,35);
+
 
     }
 
