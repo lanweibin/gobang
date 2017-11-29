@@ -5,6 +5,7 @@ package frames;
  */
 
 
+import com.sun.awt.AWTUtilities;
 import interfaces.DiyViews;
 import override_view.BlankPanel;
 import override_view.ImageButtrn;
@@ -20,7 +21,7 @@ import java.awt.event.MouseEvent;
 public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
     public static String host = "127.1.0.0";//指定全局端口号
     private JButton btnStart, btnClose;//启动按钮
-    private SelectButton selectService, selectClient, selectBlack, selcetWhite;//启动方式，颜色选择
+    private SelectButton selectService, selectClient, selectBlack, selectWhite;//启动方式，颜色选择
     private JLabel label_select_state, label_select_color;//选择方式，选择按钮
     private JLabel BackLabel, label_message;//背景标签
     private ImageIcon icon = new ImageIcon("drawable/welcome.png");
@@ -87,7 +88,7 @@ public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
         selectService = new SelectButton("服务器");
         selectClient = new SelectButton("客户端");
         selectBlack = new SelectButton("黑棋");
-        selcetWhite = new SelectButton("白棋");
+        selectWhite = new SelectButton("白棋");
 
         btnStart = new ImageButtrn("开始游戏");
         btnClose = new ImageButtrn("结束游戏");
@@ -104,26 +105,82 @@ public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
 
         if (select_color == 1){
             selectBlack.setState("selectied");
-            selcetWhite.setState("normal");
+            selectWhite.setState("normal");
         }else {
             selectBlack.setState("normal");
-            selcetWhite.setState("selectied");
+            selectWhite.setState("selectied");
         }
 
     }
 
     public void setViews() {
-        label_select_state.setBounds(169,187,100,35);
-        label_select_color.setBounds(169,240,100,35);
+        //Jlabel
+        label_select_state.setBounds(169,187,100,35);//(1)前两个是组件左上角在容器中的坐标。
+        label_select_color.setBounds(169,240,100,35);//(2)后两个是宽度和高度。
+        //JButton
+        selectService.setBounds(260,187,100,35);
+        selectClient.setBounds(400,187,100,35);
+
+        selectBlack.setBounds(260,240,100,35);
+        selectWhite.setBounds(400, 240, 100, 35);
+        btnStart.setBounds(200,320,100,35);
+        btnClose.setBounds(360,320,100,35);
+
+        //Jpanel
+        blankPanel.setBounds(5,5,Frame_width-5,Frame_height-5);
+
+        selectService.addActionListener(this); //this 传的什么？
+        selectClient.addActionListener(this);
+        selectBlack.addActionListener(this);
+        selectWhite.addActionListener(this);
+        btnStart.addActionListener(this);
+
 
 
     }
 
     public void addViews() {
+        this.add(label_select_state);
+        this.add(label_select_color);
+        this.add(selectService);
+        this.add(selectClient);
+        this.add(selectBlack);
+        this.add(selectWhite);
+        this.add(BackLabel);
+        this.add(btnStart);
+        this.add(btnClose);
+//        this.add(blankPanel);  //使用透明模板
+        this.add(BackLabel);
+
+        setUndecorated(true); //不装饰
+        setSize(Frame_width,Frame_height);
+        AWTUtilities.setWindowOpaque(this,false);//透明
+        setLocationRelativeTo(null);
+        setVisible(true);
+
 
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == selectService){
+            selectClient.setState("normal");
+            select_state = BoradFrame.STATE_SERVICE;//选择服务器
+        }
+        if (e.getSource() == selectClient){
+            selectService.setState("normal");
+            select_state = BoradFrame.STATE_CLIENT;//选择用户端
+        }
+
+        if (e.getSource() == selectBlack){
+            selectWhite.setState("normal");
+            select_color = BoradFrame.STATE_BLACK;
+        }
+        if (e.getSource() == selectWhite){
+            selectBlack.setState("normal");
+            select_color = BoradFrame.STATE_WHITE;//选择白棋子
+        }
+
+
 
     }
 
