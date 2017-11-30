@@ -50,7 +50,10 @@ public class BoradFrame extends JFrame implements DiyViews {
 
     @Override
     public void setViews() {
-
+        setContentPane(panel);
+        setSize(740,740);
+        setLocationRelativeTo(null);//窗口将置于屏幕的中央
+        setVisible(true);
     }
 
     @Override

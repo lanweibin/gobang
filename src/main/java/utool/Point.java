@@ -1,8 +1,8 @@
 package utool;
 
 public class Point {
-    private static int STATE_WHITE = 1000;
-    private static int STATE_BLACK = 1001;
+    public static int STATE_WHITE = 1000;
+    public static int STATE_BLACK = 1001;
     private int x;
     private int y;
     private int state;

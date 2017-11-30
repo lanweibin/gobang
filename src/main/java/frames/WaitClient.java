@@ -29,7 +29,7 @@ public class WaitClient extends JFrame implements DiyViews, ActionListener{
         new Thread(){
             @Override
             public void run() {
-                Bor
+
             }
         };
     }

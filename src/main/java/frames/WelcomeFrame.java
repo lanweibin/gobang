@@ -7,6 +7,7 @@ package frames;
 
 import com.sun.awt.AWTUtilities;
 import interfaces.DiyViews;
+import org.junit.Test;
 import override_view.BlankPanel;
 import override_view.ImageButtrn;
 import override_view.SelectButton;
@@ -19,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
+    public static int port = 9527;
     public static String host = "127.1.0.0";//指定全局端口号
     private JButton btnStart, btnClose;//启动按钮
     private SelectButton selectService, selectClient, selectBlack, selectWhite;//启动方式，颜色选择
@@ -183,6 +185,7 @@ public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
 
 
     }
+
 
     public static void main(String[] args) {
         WelcomeFrame welcomeFrame = new WelcomeFrame();
