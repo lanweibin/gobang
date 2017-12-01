@@ -182,6 +182,21 @@ public class WelcomeFrame extends JFrame implements DiyViews,ActionListener {
             select_color = BoradFrame.STATE_WHITE;//选择白棋子
         }
 
+        if (e.getSource() == btnStart ){
+            WaitClient frame = new WaitClient(WelcomeFrame.port, select_color);
+            System.out.println("服务器模式，黑子");
+            WelcomeFrame.this.dispose();
+        }else {
+            ConnectService clientFrame;
+            if (select_color == BoradFrame.STATE_BLACK){
+                //客户端选择黑子
+                clientFrame = new ConnectService(BoradFrame.STATE_BLACK);
+            }else {
+                clientFrame = new ConnectService(BoradFrame.STATE_WHITE);
+            }
+            WelcomeFrame.this.dispose();
+        }
+
 
 
     }

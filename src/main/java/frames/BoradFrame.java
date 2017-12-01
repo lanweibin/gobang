@@ -19,9 +19,9 @@ public class BoradFrame extends JFrame implements DiyViews {
 
 
     public BoradFrame(JPanel panel, int state_state, int state_color) {
-        this.panel = panel;
         this.state_state = state_state;
         this.state_color = state_color;
+        this.panel = panel;
         initViews();
         setViews();
         addViews();
